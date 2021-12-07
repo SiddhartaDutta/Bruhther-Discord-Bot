@@ -9,7 +9,7 @@ that might be of concern.
 
 Get started by adding Bruhther to your server today!
 
-> [Admin Link](https://discord.com/api/oauth2/authorize?client_id=880339501413728316&permissions=8&scope=bot)
+> [Admin Link](https://discord.com/api/oauth2/authorize?client_id=880339501413728316&permissions=8&scope=bot%20applications.commands)
 
 > [Test Multi Scope Link](https://discord.com/api/oauth2/authorize?client_id=880339501413728316&permissions=4228250870&scope=bot)
 
