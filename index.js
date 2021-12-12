@@ -20,7 +20,7 @@ for(const file of commandFiles){
 }
 
 Bruhther.on('ready', () => {
-    console.log('ready!');
+    console.log('STATUS: Bruhther Ready');
 });
 
 //Bruhther.on("debug", console.log);
@@ -29,7 +29,7 @@ Bruhther.on('interactionCreate', async interaction => {
 
     if (!interaction.isCommand()) return;
 
-	const command = client.commands.get(interaction.commandName);
+	const command = Bruhther.commands.get(interaction.commandName);
 
 	if (!command) return;
 
