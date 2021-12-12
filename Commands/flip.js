@@ -1,21 +1,38 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const { random } = require('mathjs')
 
 module.exports = {
 
-        // Command Data
+    /**
+	 * 
+	 */
 	data: new SlashCommandBuilder()
 
             // Command name
 		.setName('flip')
 
             // Command description
-		.setDescription('Flips a coin'),
+		.setDescription('**Gamble** test disc'),
 
 
-        // Command Execution
+    /**
+	 * execute: Sets up flip game and calls runFlip
+	 * @param {Object} interaction Command message itself
+	 */
 	async execute(interaction) {
 
-            // Reply with "Pong!"
-		await interaction.reply('Pong!');
+            
+		await interaction.reply(random().toString());
 	},
+
+	/**
+	 * runFlip: Runs core flip game
+	 * @param {Object} interaction Command message itself
+	 */
+	async runFlip(interaction){
+
+		gambNum = random();
+		gambNum++;
+
+	}
 };
