@@ -27,6 +27,7 @@ Bruhther.on('ready', () => {
 
 Bruhther.on('interactionCreate', async interaction => {
 
+        //
     if (!interaction.isCommand()) return;
 
 	const command = Bruhther.commands.get(interaction.commandName);
