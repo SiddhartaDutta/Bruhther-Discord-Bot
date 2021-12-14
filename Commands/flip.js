@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { random } = require('mathjs')
+const { randomInt } = require('mathjs')
 
 module.exports = {
 
@@ -22,7 +22,7 @@ module.exports = {
 	async execute(interaction) {
 
             
-		await interaction.reply(random().toString());
+		await interaction.reply(randomInt(0, 2).toString());
 	},
 
 	/**
