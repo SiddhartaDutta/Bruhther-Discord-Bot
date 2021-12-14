@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { randomInt } = require('mathjs')
+const { randomInt } = require('mathjs');
 
 module.exports = {
 
@@ -12,7 +12,11 @@ module.exports = {
 		.setName('flip')
 
             // Command description
-		.setDescription('**Gamble** test disc'),
+		.setDescription('**Gamble** test disc')
+
+		.addNumberOption(option => option
+			.setName('wager')
+			.setDescription('Enter an amount to be wagered')),
 
 
     /**
@@ -20,9 +24,9 @@ module.exports = {
 	 * @param {Object} interaction Command message itself
 	 */
 	async execute(interaction) {
+		const num = interaction.options.getNumber('wager');
+		await interaction.reply("- " + num);
 
-            
-		await interaction.reply(randomInt(0, 2).toString());
 	},
 
 	/**
