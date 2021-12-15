@@ -24,8 +24,23 @@ module.exports = {
 	 * @param {Object} interaction Command message itself
 	 */
 	async execute(interaction) {
-		const num = interaction.options.getNumber('wager');
-		await interaction.reply("- " + num);
+
+		// Process wager
+
+		//var wager;
+
+		var wager = interaction.options.getNumber('wager');
+		if(wager / 1 == 0){
+			wager = 5.00;
+		}
+		
+		//var wager2 = wager;
+
+		// Print out game msg and react
+		const sentMsg = await interaction.reply("Chose 1 for TAILS and 2 for HEADS");
+		sentMsg.react('😄');
+
+		//await interaction.reply("- " + wager);
 
 	},
 
