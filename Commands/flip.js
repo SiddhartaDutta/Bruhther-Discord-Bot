@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const { Message } = require('discord.js');
 const { randomInt } = require('mathjs');
 
 module.exports = {
@@ -37,8 +38,10 @@ module.exports = {
 		//var wager2 = wager;
 
 		// Print out game msg and react
-		const sentMsg = await interaction.reply("Chose 1 for TAILS and 2 for HEADS");
-		sentMsg.react('😄');
+		const sentMsg = await interaction.reply({ content: 'Chose \'H\' for HEADS or \'T\' for TAILS', fetchReply: true });
+		sentMsg.react('🇭')
+			.then(() => sentMsg.react('🇹'))
+			.catch(error => console.error('One or more emojis failed to react:', error));
 
 		//await interaction.reply("- " + wager);
 
