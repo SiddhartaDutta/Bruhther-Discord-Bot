@@ -2,11 +2,24 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Message } = require('discord.js');
 const { randomInt } = require('mathjs');
 
+// ----- Private Variables ----- \\
+
+	// Game trigger - allows async on reaction event to run
+	var GAME_TRIGGER = false;
+
+	// Wager - stores wagered amount
+	var wager = null;
+
+	// reply string - for future access
+	var sentMsg;
+
 module.exports = {
 
     /**
 	 * 
 	 */
+	//#wager: null,
+
 	data: new SlashCommandBuilder()
 
             // Command name
@@ -19,6 +32,9 @@ module.exports = {
 			.setName('wager')
 			.setDescription('Enter an amount to be wagered')),
 
+		//.setConstant({content: const guessVal = 0}),
+
+	//const guessVal = 0,
 
     /**
 	 * execute: Sets up flip game and calls runFlip
@@ -27,23 +43,22 @@ module.exports = {
 	async execute(interaction) {
 
 		// Process wager
+			// Set 'wager' to inputted amount
+			wager = interaction.options.getNumber('wager');
 
-		//var wager;
-
-		var wager = interaction.options.getNumber('wager');
-		if(wager / 1 == 0){
-			wager = 5.00;
-		}
-		
-		//var wager2 = wager;
+			// If input is 'null' (meaning no inputted wager), set to 5
+			if(wager == null){
+				wager = 5.00;
+			}
 
 		// Print out game msg and react
-		const sentMsg = await interaction.reply({ content: 'Chose \'H\' for HEADS or \'T\' for TAILS', fetchReply: true });
-		sentMsg.react('🇭')
+			// Set 'sentMsg' to initial reply
+			sentMsg = await interaction.reply({ content: 'Chose \'H\' for HEADS or \'T\' for TAILS', fetchReply: true });
+
+			// React to 'sentMsg'
+			sentMsg.react('🇭')
 			.then(() => sentMsg.react('🇹'))
 			.catch(error => console.error('One or more emojis failed to react:', error));
-
-		//await interaction.reply("- " + wager);
 
 	},
 
