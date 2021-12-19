@@ -23,9 +23,9 @@ module.exports = {
 
             // Print out "Fact" or "Cap" based on 'FOC' (0 = Cap, 1 = Fact)
             if(FOC){
-                await interaction.reply({content: 'Das fax'});
+                await interaction.reply({content: 'Das fax 📠'});
             } else {
-                await interaction.reply({content: 'Stop the cap'});
+                await interaction.reply({content: 'Stop the cap 🧢'});
             }
 
         }
