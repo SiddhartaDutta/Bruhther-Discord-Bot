@@ -9,27 +9,30 @@ module.exports = {
 	 */
 	data: new SlashCommandBuilder()
 
-            // Command name
+        // Command name
 		.setName('flip')
 
-            // Command description
+        // Command description
 		.setDescription('Flip a coin to earn some Social Credit!')
 
+		// Command input [face][REQUIRED]
 		.addStringOption(option => option
 			.setRequired(true)
 			.setName('face')
 			.setDescription('Choose a face of the coin: heads or tails'))
 
+		// Command input [wager][OPTIONAL]
 		.addNumberOption(option => option
 			.setRequired(false)
 			.setName('wager')
 			.setDescription('Enter an amount to be wagered')),
 
+			
     /**
 	 * execute: Sets up flip game and calls runFlip
 	 * @param {Object} interaction Command message itself
 	 */
-	async execute(interaction) {
+	async execute(interaction){
 
 		/* Initialize FACE - Cain face selection [REQUIRED] */
 
