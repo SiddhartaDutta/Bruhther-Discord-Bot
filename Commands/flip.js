@@ -2,7 +2,13 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Message } = require('discord.js');
 const { randomInt } = require('mathjs');
 
+var run = false;
+var choice;
+
 module.exports = {
+
+	possibleH:["H", "HEAD", "HEADS"],
+	possibleT:["T", "TAIL", "TAILS"],
 
     /**
 	 * 
@@ -34,13 +40,15 @@ module.exports = {
 	 */
 	async execute(interaction){
 
+
 		/* Initialize FACE - Cain face selection [REQUIRED] */
 
 			// Coin Face
 		var FACE = interaction.options.getString('face');
 
 			// Convert string to all caps
-		
+		FACE = FACE.toUpperCase();
+
 
 		/* Initialize WAGER - Wager input [OPTIONAL] */
 
@@ -53,11 +61,34 @@ module.exports = {
 		}
 
 
-		/* Process FACE - Check for valid input */
+		/* Process FACE */
+		
+		if(this.possibleH.includes(FACE)){				// Checks for heads input
+			run = true;
+			choice = 1;
+		} else if (this.possibleT.includes(FACE)){		// Checks for tails input
+			run = true;
+			choice = 0;
+		} else {
+			interaction.reply({content: 'You didn\'t choose a coin face 😠', ephemeral: true});
+		}
 
 		
 		/* RUN GAME */
-		await interaction.reply({content: 'wassup'});
+
+		if(run){
+
+			let flip = randomInt(0,2);
+
+			if(flip && choice){				// Win [H|H]
+				interaction.reply({content: `> <@${interaction.user.id}> spent ` + WAGER + ' SC and picked HEADS - You won!'});
+			} else if(!flip && !choice){	// Win [T|T]
+				interaction.reply({content: `> <@${interaction.user.id}> spent ` + WAGER + ' SC and picked TAILS - You won!'});
+			} else {
+				interaction.reply({content: 'L CITY'});
+			}
+
+		}
 
 
 		/* EMBED */
