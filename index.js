@@ -43,4 +43,4 @@ Bruhther.on('interactionCreate', async interaction => {
 
 });
 
-Bruhther.login(process.env.BRUHTHER_TOKEN);
+Bruhther.login(process.env.BRUHTHER_TOKEN); //bingchilling
